@@ -40,3 +40,8 @@ fn main() {
         println!("{}", i);
     }
 }
+/**
+ * Iterator 트레잇은 Item이라는 연관 타입을 정의합니다.
+Counter 구조체는 Iterator 트레잇을 구현하고, Item 타입을 u32로 지정합니다.
+next() 메서드는 Option<Self::Item> 타입을 반환합니다. 여기서 Self::Item은 Counter에 대해 지정된 u32 타입입니다.
+ * /
