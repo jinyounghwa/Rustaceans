@@ -1,55 +1,35 @@
-// 숫자중에서 중복이 없는 수를 출력
-// use std::collections::HashSet;
+struct Circle {
+    radius: f64,
+}
 
-// fn main() {
-//     let nums = vec![1, 2, 2, 3, 4, 4, 5];
-//     let unique: HashSet<_> = nums.into_iter().collect();
+impl Circle {
+    fn area(&self) -> f64 {
+        3.14 * self.radius * self.radius
+    }
+}
 
-//     println!("{:?}", unique); // {1, 2, 3, 4, 5}
-// }
-
-
-// BTreeSet은 정렬된 상태로 저장되므로, 중복된 값은 자동으로 제거됩니다.
-//use std::collections::BTreeSet;
-
-// fn main() {
-//     let scores = vec![50, 70, 90, 90, 80];
-//     let sorted_scores: BTreeSet<_> = scores.into_iter().collect();
-
-//     for score in &sorted_scores {
-//         println!("{}", score);
-//     }
-//     // 출력: 50, 70, 80, 90
-// }
-//그래프에서 최단 경로를 찾기 위해 BFS를 구현하라."
-use std::collections::VecDeque;
-
-fn bfs(start: usize, graph: &Vec<Vec<usize>>) {
-    let mut visited = vec![false; graph.len()];
-    let mut queue = VecDeque::new();
-
-    queue.push_back(start);
-    visited[start] = true;
-
-    while let Some(node) = queue.pop_front() {
-        println!("Visited {}", node);
-
-        for &neighbor in &graph[node] {
-            if !visited[neighbor] {
-                visited[neighbor] = true;
-                queue.push_back(neighbor);
-            }
-        }
+impl Circle {
+    fn circumference(&self) -> f64 {
+        2.0 * 3.14 * self.radius
     }
 }
 
 fn main() {
-    let graph = vec![
-        vec![1, 2],    // 0
-        vec![0, 3],    // 1
-        vec![0, 3],    // 2
-        vec![1, 2],    // 3
-    ];
-
-    bfs(0, &graph);
+    let circle = Circle { radius: 10.0 };
+    println!("Area: {}", circle.area());
+    println!("Circumference: {}", circle.circumference());
 }
+
+// 구조체 Circle을 정의하고, area와 circumference 메서드를 구현합니다.
+// main 함수에서 Circle 구조체의 인스턴스를 생성하고, area와 circumference 메서드를 호출하여 결과를 출력합니다.
+// Circle 구조체는 원의 반지름을 나타내며, area 메서드는 원의 면적을 계산하고, circumference 메서드는 원의 둘레를 계산합니다.
+
+// impl 키워드를 사용하여 Circle 구조체에 메서드를 추가합니다.
+// Circle 구조체의 인스턴스를 생성할 때, radius 필드에 값을 할당합니다.
+// area 메서드는 self.radius를 사용하여 면적을 계산하고, circumference 메서드는 self.radius를 사용하여 둘레를 계산합니다.
+
+// main 함수에서 Circle 구조체의 인스턴스를 생성하고, area와 circumference 메서드를 호출하여 결과를 출력합니다.
+// Circle 구조체는 원의 반지름을 나타내며, area 메서드는 원의 면적을 계산하고, circumference 메서드는 원의 둘레를 계산합니다.
+// impl 키워드를 사용하여 Circle 구조체에 메서드를 추가합니다. 함수나 구조체를 정의할 때, impl 키워드를 사용하여 메서드를 추가할 수 있습니다.
+// trait 키워드를 사용하여 Circle 구조체에 메서드를 추가합니다. trait 키워드를 사용하여 Circle 구조체에 메서드를 추가할 수 있습니다.
+// struct 와 impl 키워드를 사용하여 Circle 구조체에 메서드를 추가합니다. struct와 impl 키워드를 사용하여 Circle 구조체에 메서드를 추가할 수 있습니다.

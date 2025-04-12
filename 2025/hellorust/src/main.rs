@@ -1,31 +1,21 @@
-use std::collections::VecDeque;
+struct Circle {
+    radius: f64,
+}
 
-fn bfs(start: usize, graph: &Vec<Vec<usize>>) {
-    let mut visited = vec![false; graph.len()];
-    let mut queue = VecDeque::new();
+impl Circle {
+    fn area(&self) -> f64 {
+        3.14 * self.radius * self.radius
+    }
+}
 
-    queue.push_back(start);
-    visited[start] = true;
-
-    while let Some(node) = queue.pop_front() {
-        println!("Visited {}", node);
-
-        for &neighbor in &graph[node] {
-            if !visited[neighbor] {
-                visited[neighbor] = true;
-                queue.push_back(neighbor);
-            }
-        }
+impl Circle {
+    fn circumference(&self) -> f64 {
+        2.0 * 3.14 * self.radius
     }
 }
 
 fn main() {
-    let graph = vec![
-        vec![1, 2],    // 0
-        vec![0, 3],    // 1
-        vec![0, 3],    // 2
-        vec![1, 2],    // 3
-    ];
-
-    bfs(0, &graph);
+    let circle = Circle { radius: 10.0 };
+    println!("Area: {}", circle.area());
+    println!("Circumference: {}", circle.circumference());
 }
