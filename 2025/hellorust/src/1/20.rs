@@ -20,6 +20,9 @@ fn main(){
             /*
             *- `match`는 패턴 매칭을 사용하여 값을 비교합니다.
             *- `_`는 모든 다른 값을 나타냅니다.
+            *- `first_item`은 `&i32` 타입이므로 `**first_item`을 사용하여 `i32`로 변환합니다.
+            *- `*first_item`을 사용하여 `i32`로 변환합니다.
+            *- **은 참조를 제거합니다.
             **/
             0 => println!("The item is 0"),
             1 => println!("The item is 1"),
@@ -30,4 +33,8 @@ fn main(){
     })
     .map(|x| x*2)
     .collect::<Vec<_>>();
+    /*
+    *- `map`은 각 요소를 변환하는 메서드입니다.
+    *- `collect`는 결과를 벡터로 수집합니다.
+    */
 }
