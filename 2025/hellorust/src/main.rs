@@ -1,33 +1,21 @@
-fn main(){
-    let new_vec = vec![1,2,3];
+struct ImportantExcerpt<'a> {
+    part: &'a str,
+}
 
-    let double_vec = new_vec
-    /*
-    *- `iter`는 소유권 이전 반복자를 생성합니다.
-    *- `inspect`는 디버깅용 메서드입니다.
-    *- 각 요소를 클로저로 받아 **변형 없이 중간에서 무언가를 수행**할 수 있습니다.
-    *- 이 클로저의 인자는 `&i32` → `first_item`의 타입은 `&&i32`입니다.
-    **/
-    .iter()
-    .inspect(|first_item| {
-        println!("The item is:{first_item}");
-        /**
-        *- `inspect`는 디버깅용 메서드입니다.
-        *- 각 요소를 클로저로 받아 **변형 없이 중간에서 무언가를 수행**할 수 있습니다.
-        *- 이 클로저의 인자는 `&i32` → `first_item`의 타입은 `&&i32`입니다.
-        */
-        match **first_item*2{
-            /*
-            *- `match`는 패턴 매칭을 사용하여 값을 비교합니다.
-            *- `_`는 모든 다른 값을 나타냅니다.
-            **/
-            0 => println!("The item is 0"),
-            1 => println!("The item is 1"),
-            2 => println!("The item is 2"),
-            _ => println!("The item is not 0, 1, or 2"),
-        }
-        println!("The item is:{first_item}");
-    })
-    .map(|x| x*2)
-    .collect::<Vec<_>>();
+impl<'a> ImportantExcerpt<'a> {
+    fn level(&self) -> i32 {
+        3
+    }
+
+    fn announce_and_return_part(&self, announcement: &str) -> &str {
+        println!("Attention please: {}", announcement);
+        self.part
+    }
+}
+
+fn main() {
+    let novel = String::from("Call me Ishmael. Some years ago...");
+    let first_sentence = novel.split('.').next().expect("Could not find a '.'");
+    let i = ImportantExcerpt { part: first_sentence };
+    println!("{}", i.announce_and_return_part("The first sentence is: "));
 }
