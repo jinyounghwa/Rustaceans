@@ -9,15 +9,15 @@ fn main(){
     let my_number2 = Arc::clone(&my_number);
 
     let thread1 = std::thread::spawn(move|| {
-        // 복재본만 스레드 1로 이동합니다.
+        // 복제본만 스레드 1로 이동합니다.
         for _ in 0..10{
-            *my_number1.lock().unwrap() += 1; // Mutex를 사용하여 데이터를 안전하게 접근합니다.
+            *my_number1.lock().unwrap() += 1; // Mutex를 사용하여 데이터를 안전하게 접근합니다. 역참조를 사용하여 (*) 접근합니다.
         }
     });
     let thread2 = std::thread::spawn(move|| {
-        // 복재본만 스레드 2로 이동합니다.
+        // 복제제본만 스레드 2로 이동합니다.
         for _ in 0..10{
-            *my_number2.lock().unwrap() += 1; // Mutex를 사용하여 데이터를 안전하게 접근합니다.
+            *my_number2.lock().unwrap() += 1; // Mutex를 사용하여 데이터를 안전하게 역참조를 사용하여 (*) 접근합니다.
         }
     });
     thread1.join().unwrap();
