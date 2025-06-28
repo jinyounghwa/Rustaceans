@@ -4,4 +4,5 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-rand = "0.8" # 랜덤 숫자 생성을 위한 라이브러리
+rand = "0.8.5"
+tokio = { version = "1", features = ["full"] }
