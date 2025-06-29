@@ -1,6 +1,6 @@
 use std::fmt;
 use std::ops::Add;
-
+// Add 라이브러리 구현 예제입니다. 
 #[derive(Clone)]
 struct Country{
     name:String,
